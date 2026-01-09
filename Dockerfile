@@ -10,14 +10,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
 
-# ---- CUDA / PyTorch stability tweaks (CRITICAL) ----
-ENV CUDA_VISIBLE_DEVICES=0
-ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:512
+# 🔴 REQUIRED: Hugging Face token
+#ENV HF_TOKEN=hf_xxxxxxxxxxxxxxxxx
 
 # ================================
 # Model configuration
 # ================================
-ENV BASE_MODEL=MaziyarPanahi/Llama-3.1-70B-Instruct-AWQ
+ENV BASE_MODEL=hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4
 ENV LORA_NAME=pitinf
 ENV LORA_REPO=benstaf/pitinf-identity-lora-20260108_162425
 ENV PORT=8000
@@ -58,7 +57,7 @@ EXPOSE 8000
 
 CMD ["bash", "-lc", "\
 echo '=== GPU INFO ===' && nvidia-smi && \
-echo '=== STARTING vLLM OPENAI SERVER (70B AWQ + LoRA) ===' && \
+echo '=== STARTING vLLM OPENAI SERVER (70B AWQ INT4 + LoRA) ===' && \
 python3 -u -m vllm.entrypoints.openai.api_server \
   --model ${BASE_MODEL} \
   --quantization awq \
