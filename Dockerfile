@@ -10,6 +10,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
 
+# ---- CUDA / PyTorch stability tweaks (CRITICAL) ----
+ENV CUDA_VISIBLE_DEVICES=0
+ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:512
+
 # ================================
 # Model configuration
 # ================================
@@ -63,7 +67,7 @@ python3 -u -m vllm.entrypoints.openai.api_server \
   --max-lora-rank 64 \
   --host 0.0.0.0 \
   --port ${PORT} \
-  --gpu-memory-utilization 0.90 \
+  --gpu-memory-utilization 0.85 \
   --max-model-len 4096 \
+  --max-num-seqs 1 \
 "]
-
