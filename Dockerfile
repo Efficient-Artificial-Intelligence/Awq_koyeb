@@ -17,7 +17,7 @@ ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:512
 # ================================
 # Model configuration
 # ================================
-ENV BASE_MODEL=TheBloke/Llama-3.1-70B-Instruct-AWQ
+ENV BASE_MODEL=MaziyarPanahi/Llama-3.1-70B-Instruct-AWQ
 ENV LORA_NAME=pitinf
 ENV LORA_REPO=benstaf/pitinf-identity-lora-20260108_162425
 ENV PORT=8000
