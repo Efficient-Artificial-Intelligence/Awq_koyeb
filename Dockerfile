@@ -67,7 +67,7 @@ python3 -u -m vllm.entrypoints.openai.api_server \
   --max-lora-rank 32 \
   --host 0.0.0.0 \
   --port ${PORT} \
-  --gpu-memory-utilization 0.78 \
+  --gpu-memory-utilization 0.95 \
   --max-model-len 4096 \
   --max-num-seqs 1 \
   --max-cudagraph-capture-size 1 \
