@@ -64,7 +64,7 @@ python3 -u -m vllm.entrypoints.openai.api_server \
   --quantization awq_marlin \
   --enable-lora \
   --lora-modules ${LORA_NAME}=${LORA_REPO} \
-  --max-lora-rank 32 \
+  --max-lora-rank 128 \
   --host 0.0.0.0 \
   --port ${PORT} \
   --gpu-memory-utilization 0.95 \
